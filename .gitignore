@@ -1,2 +1,5 @@
 cachegrind*
 *_bin
+cpp-experiments/matrix-multiplications/loop-reordering/matrix
+cpp-experiments/matrix-multiplications/tiling/matrix
+cpp-experiments/matrix-multiplications/transpose/matrix

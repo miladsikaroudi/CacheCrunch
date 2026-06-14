@@ -10,5 +10,4 @@ void transpose(const float* A, float* A_T, int K, int N);
 /// @param K : #of cols of A and rows of B
 /// @param N : #of cols of B
 void matmul_transpose(const float* A, const float* B, float* C, int M, int K, int N);
-
-
+void matmul_naive(const float *A, const float *B, float *C, int M, int K, int N);

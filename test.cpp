@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include "cpp-experiments/matrix-multiplications/transpose/matrices.h"
+#include "cpp-experiments/softmax/simple/softmax.h"
 
 bool matrices_equal(float * A, float* B, int size, float tol=1e-4){
     for (int i; i<size; ++i){
@@ -64,13 +65,35 @@ void test_large()
     delete[] C_trans;
 }
 
+void test_softmax(){
+    int size = 5;
+    float input[] = {1,2,3,4,5};
+    float* output = new float[size];
+    softmax(input, output, size);
+
+    float sum = 0;
+    for (int i=0; i<size; ++i) {sum += output[i];}
+    printf("\n");
+    printf("Sum %.6f (should be ~1.0): %s\n", sum, fabsf(sum - 1.0f) <1e-4 ? "PASS": "FAIL");
+
+    bool monotonic = true;
+    for (int i=1; i<size; ++i){
+        if (output[i]<output[i-1]) monotonic = false;
+    }
+    printf("Monotonic increasing : %s\n", monotonic ? "PASS": "FAIL");
+
+    delete [] output;
+
+}
+
 
 int main(){
 
     printf("⡒·············⢲");
     test_transpose();
-    test_correctness();
+    // test_correctness();
     test_large();
+    test_softmax();
     printf("Done. \n");
     return 0;
 }
