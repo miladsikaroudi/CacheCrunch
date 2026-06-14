@@ -3,6 +3,7 @@
 #include <math.h>
 #include "cpp-experiments/matrix-multiplications/transpose/matrices.h"
 #include "cpp-experiments/softmax/simple/softmax.h"
+#include "cpp-experiments/normalization/normalization.h"
 
 bool matrices_equal(float * A, float* B, int size, float tol=1e-4){
     for (int i; i<size; ++i){
@@ -86,6 +87,20 @@ void test_softmax(){
 
 }
 
+// void layer_norm(const std::vector<float> &input, std::vector<float> &output, float epsilon = 1e-5f);
+
+void test_layernorm(){
+    std::vector<float> input{1,2,3,4,5};
+    std::vector<float> output;
+    layer_norm(input, output);
+    auto mean = .0f;
+    for (const auto & elem: output){
+        mean += elem;
+    }
+    mean /= output.size();
+    printf("The mean is around %0.6f and should be around 0: %s\n", mean, std::fabs(mean) < 1e-4 ? "PASS" : "FAIL");
+}
+
 
 int main(){
 
@@ -94,6 +109,7 @@ int main(){
     // test_correctness();
     test_large();
     test_softmax();
+    test_layernorm();
     printf("Done. \n");
     return 0;
 }

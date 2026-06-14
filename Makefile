@@ -26,7 +26,9 @@ run-test:
 		-w /app $(IMAGE_NAME) bash -c "\
 		echo '-> Compiling...' && \
 		g++ -O1 test.cpp cpp-experiments/matrix-multiplications/transpose/matrices.cpp \
-		cpp-experiments/softmax/simple/softmax.cpp -o test_bin -lm && \
+		cpp-experiments/softmax/simple/softmax.cpp \
+		cpp-experiments/normalization/normalization.cpp \
+		-o test_bin -lm && \
 		echo '-> Running tests...' && \
 		./test_bin"
 
